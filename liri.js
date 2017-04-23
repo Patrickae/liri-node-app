@@ -8,6 +8,7 @@ var client = new Twitter(twitterKeys);
 
 var commandOne = process.argv[2];
 var commandTwo = process.argv[3];
+var thisObj = new Object();
 
 
 
@@ -39,6 +40,19 @@ function switchCommand(){
 
 switchCommand();
 
+function appendLog(){
+
+	fs.appendFile("log.txt",","+JSON.stringify(thisObj, null, 3), function(err) {
+			if (err) {
+			    console.log(err);
+			  }else{
+				console.log("Content Added!");
+			};
+	    });
+};
+
+
+
 
 function twitter(){
 
@@ -48,7 +62,7 @@ function twitter(){
 	client.get('statuses/user_timeline', params, function(error, tweets, response) {
 		if (!error) {
     // console.log(JSON.stringify(tweets, null, 3));
-	    	var thisObj = new Object();
+	    	// var thisObj = new Object();
 	    	var tweetArray =[];
 	    
 	    	for (i=0; i< tweets.length; i++){
@@ -68,13 +82,7 @@ function twitter(){
 	   			 //add tweets array to the object
 	   			 thisObj.tweets = tweetArray;
 
-		   		fs.appendFile("log.txt",","+JSON.stringify(thisObj, null, 3), function(err) {
-					 if (err) {
-					    console.log(err);
-					 }else{
-						console.log("Content Added!");
-					 };
-			    });
+		   		appendLog();
 		}
 	});
 };
@@ -89,40 +97,49 @@ function spotifyFunc(){
 
 	spotify.search({ type: 'track', query: commandTwo }, function(err, data) {
    		 if ( err ) {
-    	    console.log('Error occurred: ' + err);
+    	    console.log('Error occurred: ');
       		  return;
-   		 }
- 	
+   		 };
+
 	 	var songObj = data.tracks.items[0];
+
+	 	// var thisObj= new Object();
+
+	 	if(songObj===undefined){
+
+	 		commandTwo = "0hrBpAOgrt8RXigk83LLNE";
+	 		spotify.lookup({ type:'track', id: commandTwo }, function(err, data) {
+	
+
+	 			console.log(data.artists[0].name);
+	 			thisObj.artist = data.artists[0].name;
+	 			console.log(data.name);
+	 			thisObj.song = data.name;
+	 			console.log(data.preview_url);
+	 			thisObj.preview = data.preview_url
+	 			console.log(data.album.name);
+	 			thisObj.album = data.album.name;
+	 			appendLog();
+	 		});
+
+	 	}else{
 	 	
-	 	var thisObj= new Object();
-	    // console.log(JSON.stringify(data, null, 3));
-	    //artist
-	    console.log(songObj.artists[0].name);
+		   
+		    //artist
+		    console.log(songObj.artists[0].name);
+		    thisObj.artist = songObj.artists[0].name;
+		    //song
+		    console.log(songObj.name);
+		    thisObj.song = songObj.name;
+		    //link to song
+		    console.log(songObj.preview_url);
+		    thisObj.preview = songObj.preview_url;
+		    //album
+		 	console.log(songObj.album.name);
+		 	thisObj.album = songObj.album.name;
+		 	appendLog();
 
-	    thisObj.artist = songObj.artists[0].name;
-	    //song
-	    console.log(songObj.name);
-	    thisObj.song = songObj.name;
-	    //link to song
-	    console.log(songObj.preview_url);
-	    thisObj.preview = songObj.preview_url;
-	    //album
-	 	console.log(songObj.album.name);
-	 	thisObj.album = songObj.album.name;
-
-
-
-
-	 	 fs.appendFile("log.txt",","+JSON.stringify(thisObj, null, 3), function(err) {
-			if (err) {
-			    console.log(err);
-			  }else{
-				console.log("Content Added!");
-			};
-	    });
-
-
+	 	};
 
 	});
 };
@@ -143,50 +160,43 @@ function omdbFunc(){
 
 	request(queryUrl, function(error, response, body) {
 
-  if (!error && response.statusCode === 200) { 
+	  if (!error && response.statusCode === 200) { 
 
-  			var thisObj = new Object();
+	  			// var thisObj = new Object();
 
-		   // Title of the movie.
-		   console.log("Title: "+JSON.parse(body).Title); 
-		   thisObj.title = JSON.parse(body).Title;
-		   // Year the movie came out.
-		   console.log("Year: "+JSON.parse(body).Year); 
-		   thisObj.year = JSON.parse(body).Year;
-		   // IMDB Rating of the movie.
-		   console.log("IMDB Rating: "+ JSON.parse(body).imdbRating);
-		   thisObj.imdbRating = JSON.parse(body).imdbRating; 
-		   // Country where the movie was produced.
-		   console.log("Country: "+JSON.parse(body).Country); 
-		   thisObj.country = JSON.parse(body).Country;
-		   // Language of the movie.
-		   console.log("Language: "+JSON.parse(body).Language); 
-		   thisObj.language = JSON.parse(body).Language;
-		   // Plot of the movie.
-		   console.log("Plot: "+JSON.parse(body).Plot); 
-		   thisObj.plot = JSON.parse(body).Plot;
-		   // Actors in the movie.
-		   console.log("Actors: "+JSON.parse(body).Actors);
-		   thisObj.actors = JSON.parse(body).Actors;
-		   // Rotten Tomatoes Rating.
-		   for(i=0; i<JSON.parse(body).Ratings.length; i++){
-		   		if(JSON.parse(body).Ratings[i].Source === 'Rotten Tomatoes'){
-		   			console.log("Rotten Tomatoes Score "+JSON.parse(body).Ratings[i].Value);
-		   			thisObj.rottenTomatoesScore = JSON.parse(body).Ratings[i].Value;
-		   		};
-		   };
-		   
-		   
-		   fs.appendFile("log.txt",","+JSON.stringify(thisObj, null, 3), function(err) {
-				 if (err) {
-				    console.log(err);
-				 }else{
-					console.log("Content Added!");
-				 };
-			 });
-   // Rotten Tomatoes URL.
+			   // Title of the movie.
+			   console.log("Title: "+JSON.parse(body).Title); 
+			   thisObj.title = JSON.parse(body).Title;
+			   // Year the movie came out.
+			   console.log("Year: "+JSON.parse(body).Year); 
+			   thisObj.year = JSON.parse(body).Year;
+			   // IMDB Rating of the movie.
+			   console.log("IMDB Rating: "+ JSON.parse(body).imdbRating);
+			   thisObj.imdbRating = JSON.parse(body).imdbRating; 
+			   // Country where the movie was produced.
+			   console.log("Country: "+JSON.parse(body).Country); 
+			   thisObj.country = JSON.parse(body).Country;
+			   // Language of the movie.
+			   console.log("Language: "+JSON.parse(body).Language); 
+			   thisObj.language = JSON.parse(body).Language;
+			   // Plot of the movie.
+			   console.log("Plot: "+JSON.parse(body).Plot); 
+			   thisObj.plot = JSON.parse(body).Plot;
+			   // Actors in the movie.
+			   console.log("Actors: "+JSON.parse(body).Actors);
+			   thisObj.actors = JSON.parse(body).Actors;
+			   // Rotten Tomatoes Rating.
+			   for(i=0; i<JSON.parse(body).Ratings.length; i++){
+			   		if(JSON.parse(body).Ratings[i].Source === 'Rotten Tomatoes'){
+			   			console.log("Rotten Tomatoes Score "+JSON.parse(body).Ratings[i].Value);
+			   			thisObj.rottenTomatoesScore = JSON.parse(body).Ratings[i].Value;
+			   		};
+			   };
+			   
 
-  		}
+			 appendLog();
+
+	  		};
 	});
 };
 
