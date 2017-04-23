@@ -1,0 +1,103 @@
+{ Object: "Log"},{
+   "artist": "Rascal Flatts",
+   "song": "What Hurts The Most",
+   "preview": "https://p.scdn.co/mp3-preview/ce29578cbb22361db1cf763f23c5c7d25445fcd6?cid=null",
+   "album": "Me And My Gang"
+},{
+   "tweets": [
+      {
+         "text": "@bijan_ebooks cc: @nkulw hmmm",
+         "time_created": "Fri Apr 21 18:23:33 +0000 2017"
+      },
+      {
+         "text": "RT @LeonHWolf: A few thoughts about why I use the block/mute button on twitter like it gives me candy every time I press it, and you should…",
+         "time_created": "Fri Apr 21 17:45:29 +0000 2017"
+      },
+      {
+         "text": "@alanna @LaurenStarke say hi to pam",
+         "time_created": "Fri Apr 21 14:51:46 +0000 2017"
+      },
+      {
+         "text": "@alanna @LaurenStarke lmao * stifles a sob *",
+         "time_created": "Fri Apr 21 14:51:25 +0000 2017"
+      },
+      {
+         "text": ".@MTA at least i'm having a good hair day tho - the lord giveth, the lord taketh, etc",
+         "time_created": "Fri Apr 21 14:51:05 +0000 2017"
+      },
+      {
+         "text": "@alanna @4evrmalone that's his halloween costume",
+         "time_created": "Fri Apr 21 14:50:00 +0000 2017"
+      },
+      {
+         "text": "@NoahHurowitz @danielleiat the G got me all worked up and then the A broke me",
+         "time_created": "Fri Apr 21 14:47:45 +0000 2017"
+      },
+      {
+         "text": "@NoahHurowitz @danielleiat no the G SUCKED too",
+         "time_created": "Fri Apr 21 14:47:05 +0000 2017"
+      },
+      {
+         "text": "@4evrmalone that said i do want @alanna to have a pet shower for our fabulous son jorg, who is a snail",
+         "time_created": "Fri Apr 21 14:39:00 +0000 2017"
+      },
+      {
+         "text": "@4evrmalone imagine being invited to a \"pet shower\"",
+         "time_created": "Fri Apr 21 14:38:26 +0000 2017"
+      },
+      {
+         "text": "STAY HOME! IT'S A TRAP! https://t.co/q1rJLhylFi",
+         "time_created": "Fri Apr 21 14:30:58 +0000 2017"
+      },
+      {
+         "text": "@LaurenStarke you're like the magical one new yorker who had a nice commute this AM - amazing",
+         "time_created": "Fri Apr 21 14:24:14 +0000 2017"
+      },
+      {
+         "text": "RT @rachelysanders: today we mourn Prince and all MTA passengers",
+         "time_created": "Fri Apr 21 14:03:43 +0000 2017"
+      },
+      {
+         "text": "@jessesingal Lmao thanks jesse",
+         "time_created": "Fri Apr 21 13:59:03 +0000 2017"
+      },
+      {
+         "text": "I'm so mad I'm lost in a neighborhood I know like the back of my hand",
+         "time_created": "Fri Apr 21 13:50:52 +0000 2017"
+      },
+      {
+         "text": "what a beautiful morning in New York https://t.co/SwYmyZIfUn",
+         "time_created": "Fri Apr 21 13:50:03 +0000 2017"
+      },
+      {
+         "text": "I'm charging therapy to the @MTA",
+         "time_created": "Fri Apr 21 13:48:47 +0000 2017"
+      },
+      {
+         "text": ".@melissadahl on @thecut's \"Popularity\" month: \"Alpha girls are admired and feared, but they’re not often liked.\" https://t.co/ZuHVvmYLhA",
+         "time_created": "Thu Apr 20 16:44:06 +0000 2017"
+      },
+      {
+         "text": "@jessesingal smdh",
+         "time_created": "Thu Apr 20 14:13:03 +0000 2017"
+      },
+      {
+         "text": "@jessesingal okay yeah--this headline is so misleading--i read the article and its \"don't eat raw cookie dough FOR NOW\"",
+         "time_created": "Thu Apr 20 14:12:53 +0000 2017"
+      }
+   ]
+},{
+   "title": "Goodfellas",
+   "year": "1990",
+   "imdbRating": "8.7",
+   "country": "USA",
+   "language": "English, Italian",
+   "plot": "Henry Hill and his friends work their way up through the mob hierarchy.",
+   "actors": "Robert De Niro, Ray Liotta, Joe Pesci, Lorraine Bracco",
+   "rottenTomatoesScore": "97%"
+},{
+   "artist": "Rick Astley",
+   "song": "Never Gonna Give You Up",
+   "preview": "https://p.scdn.co/mp3-preview/22bf10aff02db272f0a053dff5c0063d729df988?cid=null",
+   "album": "Whenever You Need Somebody"
+}
