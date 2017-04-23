@@ -5,10 +5,10 @@ var spotify = require('spotify');
 var request = require('request');
 var twitterKeys = keys.twitterKeys; 
 var client = new Twitter(twitterKeys);
-
 var commandOne = process.argv[2];
 var commandTwo = process.argv[3];
 var thisObj = new Object();
+
 
 
 
@@ -38,7 +38,6 @@ function switchCommand(){
 };
 
 
-switchCommand();
 
 function appendLog(){
 
@@ -61,8 +60,7 @@ function twitter(){
 
 	client.get('statuses/user_timeline', params, function(error, tweets, response) {
 		if (!error) {
-    // console.log(JSON.stringify(tweets, null, 3));
-	    	// var thisObj = new Object();
+
 	    	var tweetArray =[];
 	    
 	    	for (i=0; i< tweets.length; i++){
@@ -103,21 +101,19 @@ function spotifyFunc(){
 
 	 	var songObj = data.tracks.items[0];
 
-	 	// var thisObj= new Object();
-
 	 	if(songObj===undefined){
 
 	 		commandTwo = "0hrBpAOgrt8RXigk83LLNE";
 	 		spotify.lookup({ type:'track', id: commandTwo }, function(err, data) {
 	
 
-	 			console.log(data.artists[0].name);
+	 			console.log("*Artist: "+data.artists[0].name);
 	 			thisObj.artist = data.artists[0].name;
-	 			console.log(data.name);
+	 			console.log("*Song: "+data.name);
 	 			thisObj.song = data.name;
-	 			console.log(data.preview_url);
+	 			console.log("*Preview URL: "+data.preview_url);
 	 			thisObj.preview = data.preview_url
-	 			console.log(data.album.name);
+	 			console.log("*Album: "+data.album.name);
 	 			thisObj.album = data.album.name;
 	 			appendLog();
 	 		});
@@ -126,19 +122,20 @@ function spotifyFunc(){
 	 	
 		   
 		    //artist
-		    console.log(songObj.artists[0].name);
+		    console.log("*Artist: "+songObj.artists[0].name);
 		    thisObj.artist = songObj.artists[0].name;
 		    //song
-		    console.log(songObj.name);
+		    console.log("*Song: "+songObj.name);
 		    thisObj.song = songObj.name;
 		    //link to song
-		    console.log(songObj.preview_url);
-		    thisObj.preview = songObj.preview_url;
+		    console.log("*Preview URL: "+songObj.preview_url);
+		    songPreview = songObj.preview_url;
+		    
 		    //album
-		 	console.log(songObj.album.name);
+		 	console.log("*Album: "+songObj.album.name);
 		 	thisObj.album = songObj.album.name;
 		 	appendLog();
-
+		 	preview();
 	 	};
 
 	});
@@ -160,39 +157,36 @@ function omdbFunc(){
 
 	request(queryUrl, function(error, response, body) {
 
-	  if (!error && response.statusCode === 200) { 
-
-	  			// var thisObj = new Object();
+	 	 if (!error && response.statusCode === 200) { 
 
 			   // Title of the movie.
-			   console.log("Title: "+JSON.parse(body).Title); 
+			   console.log("*Title: "+JSON.parse(body).Title); 
 			   thisObj.title = JSON.parse(body).Title;
 			   // Year the movie came out.
-			   console.log("Year: "+JSON.parse(body).Year); 
+			   console.log("*Year: "+JSON.parse(body).Year); 
 			   thisObj.year = JSON.parse(body).Year;
 			   // IMDB Rating of the movie.
-			   console.log("IMDB Rating: "+ JSON.parse(body).imdbRating);
+			   console.log("*IMDB Rating: "+ JSON.parse(body).imdbRating);
 			   thisObj.imdbRating = JSON.parse(body).imdbRating; 
 			   // Country where the movie was produced.
-			   console.log("Country: "+JSON.parse(body).Country); 
+			   console.log("*Country: "+JSON.parse(body).Country); 
 			   thisObj.country = JSON.parse(body).Country;
 			   // Language of the movie.
-			   console.log("Language: "+JSON.parse(body).Language); 
+			   console.log("*Language: "+JSON.parse(body).Language); 
 			   thisObj.language = JSON.parse(body).Language;
 			   // Plot of the movie.
-			   console.log("Plot: "+JSON.parse(body).Plot); 
+			   console.log("*Plot: "+JSON.parse(body).Plot); 
 			   thisObj.plot = JSON.parse(body).Plot;
 			   // Actors in the movie.
-			   console.log("Actors: "+JSON.parse(body).Actors);
+			   console.log("*Actors: "+JSON.parse(body).Actors);
 			   thisObj.actors = JSON.parse(body).Actors;
 			   // Rotten Tomatoes Rating.
 			   for(i=0; i<JSON.parse(body).Ratings.length; i++){
 			   		if(JSON.parse(body).Ratings[i].Source === 'Rotten Tomatoes'){
-			   			console.log("Rotten Tomatoes Score "+JSON.parse(body).Ratings[i].Value);
+			   			console.log("*Rotten Tomatoes Score "+JSON.parse(body).Ratings[i].Value);
 			   			thisObj.rottenTomatoesScore = JSON.parse(body).Ratings[i].Value;
 			   		};
-			   };
-			   
+			   };			   
 
 			 appendLog();
 
@@ -201,11 +195,10 @@ function omdbFunc(){
 };
 
 
+
+
 function whatItSays(){
 	fs.readFile("random.txt", "utf8", function(error, data){
-
-
-		  console.log(data);
 
 		  // Then split it by commas (to make it more readable)
 		  var dataArr = data.split(",");
@@ -218,8 +211,21 @@ function whatItSays(){
 
 		 switchCommand();
 
+		 
 	});
 
+};
+
+
+
+switchCommand();
+
+var songPreview = "";
+function preview(){
+	var open = require("open");
+	if (commandTwo === '"never gonna give you up"'){
+		 		open(songPreview);
+		 	};
 };
 
 
