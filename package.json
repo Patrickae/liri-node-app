@@ -1,0 +1,25 @@
+{
+  "name": "liri-app",
+  "version": "1.0.0",
+  "description": "display tweets, movie info, and song info from apis",
+  "main": "liri.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Patrickae/liri-node-app.git"
+  },
+  "keywords": [
+    "spotify",
+    "twitter",
+    "imdb",
+    "omdb"
+  ],
+  "author": "Andy Patrick",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Patrickae/liri-node-app/issues"
+  },
+  "homepage": "https://github.com/Patrickae/liri-node-app#readme"
+}
