@@ -56,7 +56,7 @@ function appendLog(){
 function twitter(){
 
 	
-	var params = {screen_name: 'audevwhite'};
+	var params = {screen_name: 'Braves'};
 
 	client.get('statuses/user_timeline', params, function(error, tweets, response) {
 		if (!error) {
@@ -129,6 +129,7 @@ function spotifyFunc(){
 		    thisObj.song = songObj.name;
 		    //link to song
 		    console.log("*Preview URL: "+songObj.preview_url);
+		    thisObj.preview_url = songObj.preview_url;
 		    songPreview = songObj.preview_url;
 		    
 		    //album
@@ -204,7 +205,7 @@ function whatItSays(){
 		  var dataArr = data.split(",");
 
 		  // We will then re-display the content as an array for later use.
-		  console.log(dataArr);
+		  
 
 		 commandOne = dataArr[0];
 		 commandTwo = dataArr[1];
@@ -221,7 +222,8 @@ function whatItSays(){
 switchCommand();
 
 var songPreview = "";
-function preview(){
+
+function preview(){	
 	var open = require("open");
 	if (commandTwo === '"never gonna give you up"'){
 		 		open(songPreview);
