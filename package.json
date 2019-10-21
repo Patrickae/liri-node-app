@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/Patrickae/liri-node-app#readme",
   "dependencies": {
-    "open": "0.0.5",
+    "open": "7.0.0",
     "request": "^2.81.0",
     "spotify": "^0.3.0",
     "twitter": "^1.7.0"
